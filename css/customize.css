@@ -26,7 +26,7 @@ img.full-height {
 }
 
 .canvas-container{
-	border:1px solid #000000;
+	/*border:1px solid #000000;*/
 	height: 600;
 	width: 600;
 }

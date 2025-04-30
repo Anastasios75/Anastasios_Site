@@ -1,135 +1,134 @@
+let head = 0;
+let eraseHead = 0;
+let phase = 'drawing';
+const speed = 12;       // pixels per frame for the snake
+const borderWeight = 4; // thickness of the border
+
 function setup() {
   let cnv = createCanvas(600, 600);
   cnv.parent("canvas-container");
   cnv.style("display", "block");
   cnv.style("margin", "auto");
-  x = 600;
-  y = 600;
-
-  // Top triangle (bigger)
-  triangle(300, 80, 240, 180, 370, 180);
-
-  // Middle row
-  triangle(260, 200, 230, 240, 290, 240); // Smaller triangle
-  ellipse(340, 220, 45, 45); // Circle
-
-  rect(120, 260, 180, 60); // Long horizontal rectangle
-  rect(320, 260, 60, 160); // Tall rectangle
-
-  // Bottom row
-  ellipse(60, 380, 80, 80); // Circle
-  rect(120, 340, 80, 80); // Square
-
-  // Upside down triangle
-  triangle(255, 340, 210, 420, 300, 420);
-
-  // Right triangle
-  triangle(400, 420, 400, 330, 470, 420);
+  frameRate(60);
 }
 
 function draw() {
-  // Nothing dynamic here
+  background(255);
+  drawShapes();
+
+  strokeWeight(borderWeight);
+  noFill();
+  const perim = 2 * (width + height);
+
+  if (phase === 'drawing') {
+    stroke(0);
+    drawBorderSegment(0, head);
+    head += speed;
+    if (head >= perim) {
+      head = perim;
+      phase = 'erasing';
+      eraseHead = 0;
+    }
+
+  } else { // erasing
+    // draw the full black border ...
+    stroke(0);
+    drawBorderSegment(0, perim);
+    // ... then draw white over it like an erasing snake
+    stroke(255);
+    drawBorderSegment(0, eraseHead);
+    eraseHead += speed;
+    if (eraseHead >= perim) {
+      phase = 'drawing';
+      head = 0;
+    }
+  }
+}
+
+// helper: draw the border from t=a to t=b along the 4 edges
+function drawBorderSegment(a, b) {
+  let s = a;
+  let e = min(b, 2 * (width + height));
+  while (s < e) {
+    // top edge
+    if (s < width) {
+      let len = min(e, width) - s;
+      line(s, 0, s + len, 0);
+      s += len;
+
+    // right edge
+    } else if (s < width + height) {
+      let len = min(e, width + height) - s;
+      let y1 = s - width;
+      let y2 = y1 + len;
+      line(width, y1, width, y2);
+      s += len;
+
+    // bottom edge
+    } else if (s < 2 * width + height) {
+      let len = min(e, 2 * width + height) - s;
+      let seg = s - (width + height);
+      let x1 = width - seg;
+      let x2 = x1 - len;
+      line(x1, height, x2, height);
+      s += len;
+
+    // left edge
+    } else {
+      let len = min(e, 2 * (width + height)) - s;
+      let seg = s - (2 * width + height);
+      let y1 = height - seg;
+      let y2 = y1 - len;
+      line(0, y1, 0, y2);
+      s += len;
+    }
+  }
+}
+
+
+function drawShapes() {
+  stroke(0);
+  strokeWeight(1);
+
+  // Top triangle (no fill)
+  noFill();
+  triangle(300, 80, 240, 180, 370, 180);
+
+  // Middle row
+  fill('#d76b1f');  // orange triangle
+  triangle(260, 200, 225, 245, 300, 245); // Smaller triangle
+
+  // Black Circle
+  fill(0);
+  ellipse(340, 220, 50, 50);
+
+  // Long horizontal Red Rectangle
+  fill('#d54b3e');
+  rect(120, 260, 180, 60);
+
+  // gray‐green tall rect
+  fill('#6b8f8f');
+  rect(320, 260, 60, 160);
+
+
+  // Bottom row
+  // Beige Circle
+  fill('#e0913f');
+  ellipse(60, 380, 80, 80);
+
+  // deep red square
+  fill('#a01d25');
+  rect(120, 340, 80, 80);
+
+  // upside-down white triangle
+  noFill();
+  triangle(255, 340, 210, 420, 300, 420);
+
+  // blue right triangle
+  fill('#39859c');
+  triangle(400, 420, 400, 330, 470, 420);
+
 }
 
 
 
-
-
-// function setup() {
-//     createCanvas(800, 600);
-// }
-
-// function draw() {
-//     background(10);
-// }
-
-// Daniel Shiffman
-// http://codingtra.in
-// https://youtu.be/l__fEY1xanY
-// https://thecodingtrain.com/CodingChallenges/052-random-walk.html
-
-// let x;
-// let y;
-
-// function setup() {
-//   let cnv = createCanvas(windowWidth/2, windowHeight/2);
-//   cnv.parent("canvas-container");
-//   cnv.style("display", "block");
-//   cnv.style("margin", "auto");
-//   x = width / 2;
-//   y = height / 2;
-//   background(30,0,0);
-// }
-
-// function draw() {
-//   stroke(255,100);
-//   strokeWeight(5);
-//   point(x, y);
-//   const r = floor(random(4));
-//   switch (r) {
-//     case 0:
-//       x = x + 5;
-//       break;
-//     case 1:
-//       x = x - 5;
-//       break;
-//     case 2:
-//       y = y + 5;
-//       break;
-//     case 3:
-//       y = y - 5;
-//       break;
-//   }
-// }
-
-
-
-
-// -------------------------------
-// // Dimitris Papanikolaou
-// // interpolate point between two points
-
-// let v1;
-// let v2;
-// let p;
-// let slider;
-
-
-// function setup() {
-//   let cnv = createCanvas(400, 400);
-//   cnv.parent("canvas-container");
-//   cnv.style("display", "block");
-//   cnv.style("margin", "auto");
-//   v1 = createVector(50, 350);
-//   v2 = createVector(350, 50);
-//   p = createVector();
-//   slider = createSlider(0, 100);
-//   slider.position(10, 10);
-//   slider.size(80);
-//   slider.parent("canvas-container");
-//   slider.style("display", "block");
-//   slider.style("margin", "auto");
-// }
-
-// function draw() {
-//   background(255);
-//   strokeWeight(1);
-//   stroke(0)
-//   rect(0,0,400,400);
-//   line(v1.x, v1.y, v2.x, v2.y);
-
-//   strokeWeight(8);
-//   stroke(0);
-//   p = interpolatePoint(v1,v2, slider.value()/100);
-//   point(v1.x, v1.y);
-//   point(v2.x, v2.y);
-//   stroke(255,0,0);
-//   point(p.x, p.y);
-// }
-
-// function interpolatePoint(p1,p2, t){
-//   let x = t * (p2.x-p1.x) + p1.x;
-//   let y = t * (p2.y-p1.y) + p1.y;
-//   let p = createVector(x, y);
-//   return p;
-// }
