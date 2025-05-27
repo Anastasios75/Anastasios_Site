@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <title>Άσκηση 03 – ARCH 4342</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/customize.css">
+  <!-- p5.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
+  <!-- Sketches -->
+  <script src="sketch1.js" defer></script>
+  <script src="sketch2.js" defer></script>
+  <script src="sketch3.js" defer></script>
+</head>
+<body>
+  <div class="custom-container">
+
+    <!-- Header -->
+    <header class="custom-row custom-col-full">
+      <h1>Άσκηση 03 – ARCH 4342</h1>
+    </header>
+
+    <!-- Μενού επιλογής -->
+    <nav class="custom-menu">
+      <button id="btn1" class="active">Πρόβλημα 1</button>
+      <button id="btn2">Πρόβλημα 2</button>
+      <button id="btn3">Πρόβλημα 3</button>
+    </nav>
+
+    <!-- Πρόβλημα 1 -->
+    <section id="problem1" class="problem-section">
+      <div class="custom-row">
+        <div class="custom-col-half">
+          <div class="custom-canvas" id="canvas1"></div>
+        </div>
+        <div class="custom-col-half">
+          <h2><a href="https://editor.p5js.org/Anastasios75/sketches/UUgRXK7Lk" target="_blank">Πρόβλημα 1: Arrays & Iteration</a></h2>
+          <p>Grid με sub-cells και αλλαγή χρώματος στο click.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Πρόβλημα 2 -->
+    <section id="problem2" class="problem-section">
+      <div class="custom-row">
+        <div class="custom-col-half">
+          <div class="custom-canvas" id="canvas2"></div>
+        </div>
+        <div class="custom-col-half">
+          <h2><a href="https://editor.p5js.org/Anastasios75/sketches/P-eqd9npm" target="_blank">Πρόβλημα 2: Recursion – Fractal City</a></h2>
+          <p>Fractal κηπούπολη με grid roads & μαύρα blocks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Πρόβλημα 3 -->
+    <section id="problem3" class="problem-section">
+      <div class="custom-row">
+        <div class="custom-col-half">
+          <div class="custom-canvas" id="canvas3"></div>
+        </div>
+        <div class="custom-col-half">
+          <h2><a href="https://editor.p5js.org/Anastasios75/sketches/9TYpZbz17" target="_blank">Πρόβλημα 3: Snake Game με Κτίρια</a></h2>
+          <p>Snake με wrap-around & εμπόδια κτηρίων.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="custom-row custom-col-full">
+      <p>© Anastasios Tserpelis 2025</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Show/hide sections & active button
+    const showSection = id => {
+      document.querySelectorAll('.problem-section').forEach(s => s.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    };
+    const updateMenu = btn => {
+      document.querySelectorAll('.custom-menu button').forEach(b => b.classList.remove('active'));
+      document.getElementById(btn).classList.add('active');
+    };
+    window.addEventListener('DOMContentLoaded', () => {
+      // p5 instances
+      new p5(sketch1, 'canvas1');
+      new p5(sketch2, 'canvas2');
+      new p5(sketch3, 'canvas3');
+      // default
+      showSection('problem1');
+      // button handlers
+      document.getElementById('btn1').onclick = () => { showSection('problem1'); updateMenu('btn1'); };
+      document.getElementById('btn2').onclick = () => { showSection('problem2'); updateMenu('btn2'); };
+      document.getElementById('btn3').onclick = () => { showSection('problem3'); updateMenu('btn3'); };
+    });
+  </script>
+</body>
+</html>
