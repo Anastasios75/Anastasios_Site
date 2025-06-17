@@ -1,53 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
-
-  <!-- Basic Page Needs–– -->
   <meta charset="utf-8">
-
-  <title>NTUA ARCH 4342</title>
-
-  <!-- Mobile Specific Metas -->
+  <title>Άσκηση 02 – ARCH 4342</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- FONT -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet">
   <!-- CSS -->
   <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/skeleton.css">
   <link rel="stylesheet" href="../../css/customize.css">
-  <!-- ICON -->
-  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
-  <link rel="shortcut icon" href="../../images/favicon.ico">
-  <!-- p5 -->
+  <!-- p5.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
-  <script src="sketch.js"></script>
+  <!-- Sketches -->
+  <script type="module" defer>
+    import { sketchMain } from './sketch.js';
+    import { sketch1 } from './problem1.js';
+    import { sketch3 } from './problem3.js';
+    import { sketch5 } from './problem5.js';
 
+    window.addEventListener('DOMContentLoaded', () => {
+      new p5(sketchMain, 'canvasSketch');
+      new p5(sketch1, 'canvas1');
+      new p5(sketch3, 'canvas3');
+      new p5(sketch5, 'canvas5');
+    });
+  </script>
 </head>
-<body>
+<body class="menu">
+  <div class="custom-container">
 
-  <div id="projects" class="container" >
+    <!-- Header -->
+    <header class="custom-row custom-col-full">
+      <h1>Άσκηση 02 – ARCH 4342</h1>
+    </header>
 
-    <div class="row one-top center">
-        <div id="canvas-container" class="canvas-container"></div>
-    </div>
+    <!-- Μενού επιλογής -->
+    <nav class="custom-menu">
+      <button id="btnSketch" class="active">Κύριο Σχέδιο (Μέρος 3)</button>
+      <button id="btn1">Πρόβλημα 1</button>
+      <button id="btn3">Πρόβλημα 3</button>
+      <button id="btn5">Πρόβλημα 5</button>
+    </nav>
 
-    <div class="row one-top center">
-      <div id="textarea">
-        <p>Η σύνθεση του project βασίζεται στη χρήση βασικών γεωμετρικών σχημάτων, τα οποία, μέσα από τον συνδυασμό και την αλληλεπίδρασή τους, δημιουργούν ένα αρμονικό και ολοκληρωμένο αποτέλεσμα. Η κεντρική ιδέα πίσω από αυτή τη σύνθεση είναι η σύνδεση με την αρχιτεκτονική: όπως τα απλά γεωμετρικά στοιχεία συνεργάζονται για να διαμορφώσουν μια ενιαία και δυναμική μορφή, έτσι και στην αρχιτεκτονική, τα επιμέρους δομικά και αισθητικά στοιχεία συντίθενται για να ολοκληρώσουν το κτίριο και να εκφράσουν τη συνολική ιδέα του. Μέσα από αυτή τη διαδικασία, αναδεικνύεται η δύναμη της απλότητας και η αξία της συνύπαρξης των στοιχείων για τη δημιουργία ουσιαστικών και ολοκληρωμένων μορφών.</p>
+    <!-- Κύριο Σχέδιο (Μέρος 3) -->
+    <section id="sketch" class="problem-section" style="display:none;">
+      <div class="custom-row">
+        <div class="custom-col-full">
+          <div id="canvasSketch" class="custom-canvas"></div>
+        </div>
+        <div class="custom-col-full">
+          <h2><a href="https://editor.p5js.org/Anastasios75/sketches/jMuMR6gq_" target="_blank">Σύνθεση βασικών γεωμετρικών σχημάτων</a></h2>
+          <p>Η σύνθεση του project βασίζεται στη χρήση βασικών γεωμετρικών σχημάτων, τα οποία, μέσα από τον συνδυασμό και την αλληλεπίδρασή τους, δημιουργούν ένα αρμονικό και ολοκληρωμένο αποτέλεσμα. Η κεντρική ιδέα πίσω από αυτή τη σύνθεση είναι η σύνδεση με την αρχιτεκτονική: όπως τα απλά γεωμετρικά στοιχεία συνεργάζονται για να διαμορφώσουν μια ενιαία και δυναμική μορφή, έτσι και στην αρχιτεκτονική, τα επιμέρους δομικά και αισθητικά στοιχεία συντίθενται για να ολοκληρώσουν το κτίριο και να εκφράσουν τη συνολική ιδέα του. Μέσα από αυτή τη διαδικασία, αναδεικνύεται η δύναμη της απλότητας και η αξία της συνύπαρξης των στοιχείων για τη δημιουργία ουσιαστικών και ολοκληρωμένων μορφών.</p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="row one-bottom center">
-      <p>©Anastasios Tserpelis 2025</p>
-    </div>
+    <!-- Πρόβλημα 1 -->
+    <section id="problem1" class="problem-section" style="display:none;">
+      <div class="custom-row">
+        <div class="custom-col-full">
+          <div id="canvas1" class="custom-canvas"></div>
+        </div>
+        <div class="custom-col-full">
+          <h2><a href="https://editor.p5js.org/Anastasios75/sketches/HYLIGiQkx" target="_blank">Πρόβλημα 1: Σχέδιο με Έλλειψη και Τετράγωνο</a></h2>
+          <p>Σχεδίαση κόκκινου κύκλου με διάμετρο 100 και τετράγωνο μέσα σε αυτόν.</p>
+        </div>
+      </div>
+    </section>
 
+    <!-- Πρόβλημα 3 -->
+    <section id="problem3" class="problem-section" style="display:none;">
+      <div class="custom-row">
+        <div class="custom-col-full">
+          <div id="canvas3" class="custom-canvas"></div>
+        </div>
+        <div class="custom-col-full">
+          <h2><a href="https://editor.p5js.org/Anastasios75/sketches/f9RxsKc8N" target="_blank">Πρόβλημα 3: Τυχαίοι Κύκλοι με Διαφάνεια</a></h2>
+          <p>Δημιουργία τυχαίων κύκλων με διαφορετικά μεγέθη, χρώματα και διαφάνειες.</p>
+        </div>
+      </div>
+    </section>
 
-
+    <!-- Πρόβλημα 5 -->
+    <section id="problem5" class="problem-section" style="display:none;">
+      <div class="custom-row">
+        <div class="custom-col-full">
+          <div id="canvas5" class="custom-canvas"></div>
+        </div>
+        <div class="custom-col-full">
+          <h2><a href="https://editor.p5js.org/Anastasios75/sketches/6fRTDLcCm" target="_blank">Πρόβλημα 5: Σπειροειδής Διάταξη Κύκλων</a></h2>
+          <p>Διάταξη κύκλων σε σπειροειδή μορφή με χρήση πολικών συντεταγμένων.</p>
+        </div>
+      </div>
+    </section>
   </div>
-
-
+  <div>
+    <!-- Footer -->
+    <footer class="custom-row custom-col-full">
+      <p>© Anastasios Tserpelis 2025</p>
+    </footer>
+  </div>
+  <script>
+    // Show/hide sections & active button
+    const showSection = id => {
+      document.querySelectorAll('.problem-section').forEach(s => s.style.display = 'none');
+      const section = document.getElementById(id);
+      if (section) {
+        section.style.display = 'block';
+      }
+    };
+    const updateMenu = btn => {
+      document.querySelectorAll('.custom-menu button').forEach(b => b.classList.remove('active'));
+      const button = document.getElementById(btn);
+      if (button) {
+        button.classList.add('active');
+      }
+    };
+    window.addEventListener('DOMContentLoaded', () => {
+      // default
+      showSection('sketch');
+      updateMenu('btnSketch');
+      // button handlers
+      document.getElementById('btnSketch').onclick = () => { showSection('sketch'); updateMenu('btnSketch'); };
+      document.getElementById('btn1').onclick = () => { showSection('problem1'); updateMenu('btn1'); };
+      document.getElementById('btn3').onclick = () => { showSection('problem3'); updateMenu('btn3'); };
+      document.getElementById('btn5').onclick = () => { showSection('problem5'); updateMenu('btn5'); };
+    });
+  </script>
 </body>
 </html>
+</create_file>
