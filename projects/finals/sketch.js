@@ -52,7 +52,7 @@
 
     for (let f of fields) {
       push();
-      translate(constrain(f.x + f.w / 2, 0, width), constrain(f.y + f.h / 2, 0, height));
+      translate(f.x, f.y);
       rotate(f.angle + angleOffset);
       stroke(255);
       strokeWeight(f.strokeW);
@@ -64,7 +64,7 @@
       // Draw hatch lines inside rectangle
       let spacing = f.w / f.lineCount;
       for (let i = 1; i < f.lineCount; i++) {
-        line(i * spacing - f.w / 2, -height / 2, i * spacing - f.w / 2, height / 2);
+        line(i * spacing - f.w / 2, 0, i * spacing - f.w / 2, height);
       }
       pop();
     }
